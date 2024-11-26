@@ -170,7 +170,7 @@
                     <h2>Mental Health Issues</h2> 
                 </div>
                 <div>
-                    <a href="all-nutrition.html" class="see-all-link" onclick="navigatetoissues();">See All</a>
+                    <a class="see-all-link" onclick="navigatetoissues()">See All</a>
                 </div>
             </div>
             <div class="nutrition-list">
@@ -228,7 +228,7 @@
                 <h2>Self-Care</h2>
                 </div>
                 <div>
-                    <a href="all-peace.html" class="see-all-link" onclick="navigatetoselfcare();">See All</a>
+                    <a style="cursor:pointer;" class="see-all-link" onclick="navigatetoselfcare();">See all</a>
                 </div>
             </div>
             <div class="nutrition-list">
@@ -395,12 +395,13 @@
             const loc = "{% url 'selfhelpbooks'%}";
             window.location.href=loc;
          }  
+         
          function navigatetoselfcare(){
-            const loc ="{% url 'resources'}";
+            const loc ='resources';
             window.location.href=loc;
          } 
          function navigatetoissues(){
-            const loc ="{% url 'issues'}";
+            const loc ="{% url 'issues' %}";
             window.location.href=loc;
          }  
          
@@ -415,6 +416,13 @@
                     link.textContent = "Read less";
                 }
             });
+        });
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.body.style.setProperty('--scroll-width', `${scrolled}%`);
+            document.body.style.setProperty('animation', 'progressBar 0.5s ease');
         });
    </script>
 </body>

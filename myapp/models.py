@@ -249,14 +249,27 @@ class UserResponse(models.Model):
 
 
 
+# Recommended Database Model
 class Chat(models.Model):
+    SUPPORT_LEVELS = [
+        ('low_risk', 'Low Risk'),
+        ('moderate_risk', 'Moderate Risk'),
+        ('high_risk', 'High Risk')
+    ]
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
-    response = models.TextField()
+    response = models.TextField(max_length=1000)
+    support_level = models.CharField(
+        max_length=20, 
+        choices=SUPPORT_LEVELS, 
+        default='low_risk'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username}: {self.message}'
+        return f"Chat with {self.user.username} at {self.created_at}"
+
 
 
 class Profile(models.Model):
