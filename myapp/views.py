@@ -12,7 +12,11 @@ import json
 from django.shortcuts import render
 from django.db.models import Q
 import json
+<<<<<<< HEAD
 import openai
+=======
+
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
 
 
 def process_quiz_results(request):
@@ -55,12 +59,15 @@ DISORDER_COLUMN_MAPPING = {
     "Eating Disorders": "eating_percentage",
 }
 
+<<<<<<< HEAD
 SCORE_DESCRIPTION_MAPPING = {
     0: "No signs of this disorder.",
     100: "Mild symptoms detected.",
     200: "Significant symptoms detected; consider seeking help.",
 }
 
+=======
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
 def recommendations(request):
     # Fetch the latest quiz results for the user
     result = QuizResult.objects.filter(user=request.user).order_by('-completed_at').first()
@@ -71,6 +78,7 @@ def recommendations(request):
     # Use scores directly (0, 100, or 200)
     disorder_scores = result.disorder_scores
 
+<<<<<<< HEAD
     # Filter non-zero scores and add descriptions
     non_zero_disorder_scores = {
         disorder: {
@@ -82,6 +90,10 @@ def recommendations(request):
 
     # Check if all scores are zero
     if not non_zero_disorder_scores:
+=======
+    # Check if all scores are zero
+    if all(score == 0 for score in disorder_scores.values()):
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
         return render(request, "recommendation.html", {
             "message": "Great news! Your scores indicate that you are doing well. No specific recommendations are needed at this time.",
             "book_recommendations": [],
@@ -91,7 +103,10 @@ def recommendations(request):
             "music_recommendations": [],
             "workout_recommendations": [],
             "yoga_recommendations": [],
+<<<<<<< HEAD
             "non_zero_disorder_scores": {},
+=======
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
         })
 
     # Separate recommendations for each type
@@ -104,8 +119,16 @@ def recommendations(request):
     yoga_recommendations = set()
 
     # Gather recommendations for non-zero scores
+<<<<<<< HEAD
     for disorder, data in non_zero_disorder_scores.items():
         score = data["score"]
+=======
+    for disorder, score in disorder_scores.items():
+        # Skip if score is 0
+        if score == 0:
+            continue
+            
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
         disorder_column = DISORDER_COLUMN_MAPPING.get(disorder)
         if disorder_column:
             # Fetch books where disorder value matches user's score
@@ -171,14 +194,20 @@ def recommendations(request):
             "music_recommendations": [],
             "workout_recommendations": [],
             "yoga_recommendations": [],
+<<<<<<< HEAD
             "non_zero_disorder_scores": non_zero_disorder_scores,
+=======
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
         })
 
     return render(
         request,
         "recommendation.html",
         {
+<<<<<<< HEAD
             "message": "",
+=======
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
             "book_recommendations": list(book_recommendations),
             "exercise_recommendations": list(exercise_recommendations),
             "podcast_recommendations": list(podcast_recommendations),
@@ -186,11 +215,17 @@ def recommendations(request):
             "music_recommendations": list(music_recommendations),
             "workout_recommendations": list(workout_recommendations),
             "yoga_recommendations": list(yoga_recommendations),
+<<<<<<< HEAD
             "non_zero_disorder_scores": non_zero_disorder_scores,
         },
     )
 
    
+=======
+        },
+    )
+    
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
 
 @login_required
 def quiz(request):
@@ -234,7 +269,11 @@ def quiz(request):
 
     # Handle POST request for recommendations
     if request.method == "POST":
+<<<<<<< HEAD
         threshold = 150
+=======
+        threshold = 200
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
         scores = json.loads(request.POST.get('disorder_scores', '{}'))
         high_scoring_disorders = {disorder: score for disorder, score in scores.items() if score > threshold}
 
@@ -402,6 +441,7 @@ def quiz(request):
 #     }
 #     return render(request, 'quiz.html', context)
 
+<<<<<<< HEAD
 import os
 openai.api_key= os.environ.get("API_KEY") 
  
@@ -558,6 +598,41 @@ def login(request):
             messages.error(request, 'Invalid username or password.')
     
     return render(request, 'login.html')
+=======
+
+
+# openai_api_key = ''
+# openai.api_key = openai_api_key
+
+def ask_openai(message):
+    # Ensure you're using the correct model
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": message}
+        ]
+    )
+    
+    # Extract the response from the assistant
+    bot_response = response['choices'][0]['message']['content'].strip()
+    return bot_response
+
+# Create your views here.
+@login_required
+def chatbot(request):
+    chats = Chat.objects.filter(user=request.user)
+
+    if request.method == 'POST':
+        message = request.POST.get('message')
+        response = ask_openai(message)
+
+        chat = Chat(user=request.user, message=message, response=response, created_at=timezone.now())
+        chat.save()
+        return JsonResponse({'message': message, 'response': response})
+    return render(request, 'chatbot.html', {'chats': chats})
+
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
 
 
 def home(request):

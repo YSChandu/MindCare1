@@ -299,7 +299,10 @@ header {
 }
 
 .nutrition-card {
+<<<<<<< HEAD
     
+=======
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
     background-color: #ffffff; /* Light background matching your theme */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -307,7 +310,10 @@ header {
     transition: transform 0.3s ease;
 }
 .nutrition-card:hover{
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
     transform: scale(1.1);
 }
 

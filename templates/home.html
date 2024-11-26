@@ -170,7 +170,11 @@
                     <h2>Mental Health Issues</h2> 
                 </div>
                 <div>
+<<<<<<< HEAD
                     <a class="see-all-link" onclick="navigatetoissues()">See All</a>
+=======
+                    <a href="all-nutrition.html" class="see-all-link" onclick="navigatetoissues();">See All</a>
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
                 </div>
             </div>
             <div class="nutrition-list">
@@ -228,7 +232,11 @@
                 <h2>Self-Care</h2>
                 </div>
                 <div>
+<<<<<<< HEAD
                     <a style="cursor:pointer;" class="see-all-link" onclick="navigatetoselfcare();">See all</a>
+=======
+                    <a href="all-peace.html" class="see-all-link" onclick="navigatetoselfcare();">See All</a>
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
                 </div>
             </div>
             <div class="nutrition-list">
@@ -395,6 +403,7 @@
             const loc = "{% url 'selfhelpbooks'%}";
             window.location.href=loc;
          }  
+<<<<<<< HEAD
          
          function navigatetoselfcare(){
             const loc ='resources';
@@ -402,6 +411,14 @@
          } 
          function navigatetoissues(){
             const loc ="{% url 'issues' %}";
+=======
+         function navigatetoselfcare(){
+            const loc ="{% url 'resources'}";
+            window.location.href=loc;
+         } 
+         function navigatetoissues(){
+            const loc ="{% url 'issues'}";
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
             window.location.href=loc;
          }  
          
@@ -417,6 +434,7 @@
                 }
             });
         });
+<<<<<<< HEAD
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -424,6 +442,8 @@
             document.body.style.setProperty('--scroll-width', `${scrolled}%`);
             document.body.style.setProperty('animation', 'progressBar 0.5s ease');
         });
+=======
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
    </script>
 </body>
 </html>

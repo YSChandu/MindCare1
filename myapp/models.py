@@ -249,6 +249,7 @@ class UserResponse(models.Model):
 
 
 
+<<<<<<< HEAD
 # Recommended Database Model
 class Chat(models.Model):
     SUPPORT_LEVELS = [
@@ -270,6 +271,16 @@ class Chat(models.Model):
     def __str__(self):
         return f"Chat with {self.user.username} at {self.created_at}"
 
+=======
+class Chat(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField()
+    response = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username}: {self.message}'
+>>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
 
 
 class Profile(models.Model):
