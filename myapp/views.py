@@ -403,9 +403,8 @@ def quiz(request):
 #     return render(request, 'quiz.html', context)
 
 import os
-openai_api_key = os.environ.get("API_KEY") 
-openai.api_key = openai_api_key
-
+openai.api_key= os.environ.get("API_KEY") 
+ 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.utils import timezone
