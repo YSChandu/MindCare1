@@ -402,8 +402,8 @@ def quiz(request):
 #     }
 #     return render(request, 'quiz.html', context)
 
-openai_api_key = "your api key here"
-openai.api_key = openai_api_key
+# openai_api_key = "your api key here"
+# openai.api_key = openai_api_key
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
