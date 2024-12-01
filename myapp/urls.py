@@ -30,19 +30,11 @@ urlpatterns=[
     path('issues/self-harm/', views.selfharm, name='self_harm'),
     path('aboutus/',views.aboutus,name='aboutus'),
     path('music/',views.music,name='music'),
-<<<<<<< HEAD
     path('movies/',views.movies,name='movies'),
     path('breathing/',views.breathing,name='breathing'),
     path('workout/',views.exercise,name='workout'),
     path('selfhelpbooks/',views.selfhelpbooks,name='selfhelpbooks'),
     path('schedules/',views.schedules,name='schedules'),
-=======
-    path('movies',views.movies,name='movies'),
-    path('breathing',views.breathing,name='breathing'),
-    path('workout',views.exercise,name='workout'),
-    path('selfhelpbooks',views.selfhelpbooks,name='selfhelpbooks'),
-    path('schedules',views.schedules,name='schedules'),
->>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
     path('process-quiz/', views.process_quiz_results, name='process_quiz'),
     path('recommendations/', views.recommendations, name='recommendations')
 ]

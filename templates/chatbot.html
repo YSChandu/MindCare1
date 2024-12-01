@@ -101,11 +101,7 @@
             <h5 class="mb-0">Chat</h5>
             {% if user.is_authenticated %}
                 <span>Welcome {{ user.username }}</span>
-<<<<<<< HEAD
                 <a style="color: #505050;" href={% url 'logout' %}>Logout</a>
-=======
-                <a style="color: #505050;" href="logout">Logout</a>
->>>>>>> e8e40933d006962c75390cd0452f93afc3613b3f
             {% else %}
                 <div>
                     <a style="color:#505050;" href="login">Login</a>
